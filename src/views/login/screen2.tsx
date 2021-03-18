@@ -12,7 +12,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { Input, Button, Icon } from 'react-native-elements';
+import { Input, Button, Icon, InputProps } from 'react-native-elements';
 import { LinearGradient } from '../../components/LinearGradient';
 
 // Enable LayoutAnimation on Android
@@ -25,7 +25,9 @@ const USER_HP = require('../../../assets/images/user-hp.png');
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const LoginScreen3 = () => {
+type LoginScreen3Props = {};
+
+const LoginScreen3: React.FunctionComponent<LoginScreen3Props> = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string>(null);
   const [username, setUsername] = useState<string>('');
@@ -38,10 +40,10 @@ const LoginScreen3 = () => {
   const [validConfirmationPassword, setConfirmationPasswordValid] = useState<
     boolean
   >(true);
-  let emailInput = useRef(null);
-  let passwordInput = useRef(null);
-  let confirmationPasswordInput = useRef(null);
-  let usernameInput = useRef(null);
+  let emailInput = useRef<InputProps>(null);
+  let passwordInput = useRef<InputProps>(null);
+  let confirmationPasswordInput = useRef<InputProps>(null);
+  let usernameInput = useRef<InputProps>(null);
 
   const signup = () => {
     LayoutAnimation.easeInEaseOut();
@@ -136,7 +138,7 @@ const LoginScreen3 = () => {
             selected={selectedType === 'teacher'}
           />
         </View>
-        <View style={{ width: '80%', alignItems: 'center' }}>
+        <View style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
           <FormInput
             refInput={(input) => (usernameInput = input)}
             icon="user"
@@ -204,7 +206,7 @@ const LoginScreen3 = () => {
         <Button
           loading={isLoading}
           title="SIGNUP"
-          containerStyle={{ flex: -1 }}
+          containerStyle={{ flex: -1, marginLeft: 'auto', marginRight: 'auto' }}
           buttonStyle={styles.signUpButton}
           linearGradientProps={{
             colors: ['#FF9800', '#F44336'],
@@ -303,11 +305,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 28,
     fontFamily: 'UbuntuLight',
+    textAlign: 'center',
   },
   whoAreYouText: {
     color: '#7384B4',
     fontFamily: 'UbuntuBold',
     fontSize: 14,
+    textAlign: 'center',
   },
   userTypesContainer: {
     flexDirection: 'row',

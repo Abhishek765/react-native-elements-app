@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, createRef } from 'react';
 import {
   View,
   ScrollView,
@@ -14,6 +14,7 @@ import {
   Icon,
   Button,
   ThemeProvider,
+  InputProps,
 } from 'react-native-elements';
 import { Header } from './header';
 
@@ -31,15 +32,20 @@ const SearchBarCustom = (props) => {
   return <SearchBar value={value} onChangeText={setValue} {...props} />;
 };
 
-const Inputs = () => {
+type InputsComponentProps = {};
+
+const Inputs: React.FunctionComponent<InputsComponentProps> = () => {
   let email2Input = useRef(null);
   let passwordInput = useRef(null);
   let password2Input = useRef(null);
   let shakeInput = useRef(null);
   let confirmPassword2Input = useRef(null);
+
   const InputFieldsStyle = {
     borderWidth: 0,
   };
+
+  const inputProps = {};
   return (
     <KeyboardAvoidingView
       style={styles.keyboardAvoidingView}
@@ -81,6 +87,7 @@ const Inputs = () => {
         </View>
         <View style={{ alignItems: 'center', marginBottom: 16 }}>
           <Input
+            {...(inputProps as InputProps)}
             containerStyle={{ width: '90%' }}
             placeholder="Input with label"
             label="LABEL"
@@ -88,11 +95,13 @@ const Inputs = () => {
             style={InputFieldsStyle}
           />
           <Input
+            {...(inputProps as InputProps)}
             containerStyle={styles.inputContainerStyle}
             placeholder="Simple input"
             style={InputFieldsStyle}
           />
           <Input
+            {...(inputProps as InputProps)}
             leftIcon={
               <Icon
                 name="map-marker"
@@ -107,6 +116,7 @@ const Inputs = () => {
             style={InputFieldsStyle}
           />
           <Input
+            {...(inputProps as InputProps)}
             rightIcon={
               <Icon
                 name="chevron-right"
@@ -120,12 +130,14 @@ const Inputs = () => {
             style={InputFieldsStyle}
           />
           <Input
+            {...(inputProps as InputProps)}
             containerStyle={styles.inputContainerStyle}
             placeholder="Input with error message"
             errorMessage="Invalid input"
             style={InputFieldsStyle}
           />
           <Input
+            {...(inputProps as InputProps)}
             containerStyle={[styles.inputContainerStyle]}
             placeholder="Shake input"
             style={InputFieldsStyle}
@@ -158,9 +170,10 @@ const Inputs = () => {
             >
               Login
             </Text>
-            <View style={styles.overlay}>
+            <View>
               <View style={styles.triangleLeft} />
               <Input
+                {...(inputProps as InputProps)}
                 inputContainerStyle={{
                   borderWidth: 1,
                   borderColor: 'white',
@@ -196,7 +209,7 @@ const Inputs = () => {
               />
               <View style={styles.triangleRight} />
             </View>
-            <View style={[styles.overlay, { marginBottom: 30, marginTop: 1 }]}>
+            <View style={[{ marginBottom: 30, marginTop: 1 }]}>
               <View style={styles.triangleLeft} />
               <Input
                 inputContainerStyle={{
@@ -277,6 +290,7 @@ const Inputs = () => {
                 Sign up
               </Text>
               <Input
+                {...(inputProps as InputProps)}
                 leftIcon={
                   <Icon
                     name="user"
@@ -297,6 +311,7 @@ const Inputs = () => {
                 }}
               />
               <Input
+                {...(inputProps as InputProps)}
                 leftIcon={
                   <Icon
                     name="email-outline"
@@ -318,6 +333,7 @@ const Inputs = () => {
                 }}
               />
               <Input
+                {...(inputProps as InputProps)}
                 leftIcon={
                   <Icon
                     name="lock"
@@ -336,10 +352,11 @@ const Inputs = () => {
                 returnKeyType="next"
                 ref={(input) => (password2Input = input)}
                 onSubmitEditing={() => {
-                  confirmPassword2Input.focus();
+                  confirmPassword2Input.current.focus();
                 }}
               />
               <Input
+                {...(inputProps as InputProps)}
                 leftIcon={
                   <Icon
                     name="lock"
@@ -391,7 +408,7 @@ const styles = StyleSheet.create({
   triangleLeft: {
     position: 'absolute',
     left: -20,
-    bottom: 24,
+    top: 0,
     width: 0,
     height: 0,
     borderRightWidth: 20,

@@ -4,7 +4,9 @@ import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
 import { Header, SubHeader } from './header';
 import { LinearGradient } from '../components/LinearGradient';
 
-const Buttons = () => {
+type ButtonsComponentProps = {};
+
+const Buttons: React.FunctionComponent<ButtonsComponentProps> = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([0, 2, 3]);
 
@@ -92,7 +94,7 @@ const Buttons = () => {
               title="SIGN UP"
               loading={true}
               loadingProps={{
-                size: 'large',
+                size: 'small',
                 color: 'rgba(111, 202, 186, 1)',
               }}
               titleStyle={{ fontWeight: '700' }}
@@ -103,7 +105,7 @@ const Buttons = () => {
                 borderRadius: 5,
                 paddingVertical: 10,
               }}
-              containerStyle={{ marginTop: 20, width: 300, height: 45 }}
+              containerStyle={{ width: 300 }}
             />
             <View style={styles.buttonsContainer}>
               <Button
@@ -243,7 +245,7 @@ const Buttons = () => {
   );
 };
 
-function CustomTitle() {
+const CustomTitle = () => {
   return (
     <View style={{ flexDirection: 'column' }}>
       <Text style={{ fontWeight: 'bold', fontSize: 18 }}>John Doe</Text>
@@ -252,7 +254,7 @@ function CustomTitle() {
       </Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   contentView: {
@@ -266,4 +268,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(Buttons);
+export default withTheme(Buttons, '');

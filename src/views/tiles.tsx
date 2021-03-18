@@ -3,12 +3,14 @@ import { View, ScrollView } from 'react-native';
 import { Text, Tile } from 'react-native-elements';
 import { Header } from './header';
 
-const Tiles = () => {
+type TilesComponentProps = {};
+
+const Tiles: React.FunctionComponent<TilesComponentProps> = () => {
   return (
     <>
       <Header title="Tiles" />
       <View style={{ alignItems: 'center' }}>
-        <ScrollView>
+        <ScrollView style={{ paddingVertical: 10 }}>
           <Tile
             imageSrc={{
               uri:
@@ -52,6 +54,7 @@ const Tiles = () => {
               activeOpacity={1}
               width={310}
               contentContainerStyle={{ height: 70 }}
+              style={{ paddingBottom: 20 }}
             >
               <View
                 style={{

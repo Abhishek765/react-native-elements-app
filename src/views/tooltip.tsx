@@ -1,22 +1,31 @@
 import React from 'react';
-import { Tooltip, Text } from 'react-native-elements';
+import { Tooltip, Text, TooltipProps } from 'react-native-elements';
 import { Header } from './header';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import colors from '../config/colors';
 
 const { height } = Dimensions.get('window');
 
-const TooltipComponent = () => {
+type ToolTipComponentProps = {};
+
+const TooltipComponent: React.FunctionComponent<ToolTipComponentProps> = () => {
+  const toolProps = {};
   return (
     <>
       <Header title="Tooltip" />
       <View style={{ marginVertical: height / 8 }}>
         <View style={styles.view}>
-          <Tooltip popover={<Text>Hey there!</Text>} withPointer={false}>
-            <Text>Without caret</Text>
+          <Tooltip
+            {...(toolProps as TooltipProps)}
+            popover={<Text>no caret!</Text>}
+            withPointer={false}
+          >
+            <Text>without caret</Text>
           </Tooltip>
           <Tooltip
+            {...(toolProps as TooltipProps)}
             popover={<Text>Tooltip info goes here</Text>}
+            width={200}
             backgroundColor={colors.primary}
           >
             <Text>Press me</Text>
@@ -24,31 +33,47 @@ const TooltipComponent = () => {
         </View>
         <View style={styles.view}>
           <Tooltip
+            {...(toolProps as TooltipProps)}
             backgroundColor={colors.secondary}
             popover={
               <Text>Tooltip info goes here too. Find tooltip everywhere</Text>
             }
-            containerStyle={{ width: 170, height: 60 }}
+            containerStyle={{ width: 200, height: 60 }}
           >
             <Text>Press me</Text>
           </Tooltip>
           <Tooltip
-            pointerColor={colors.primary}
-            popover={<Text>Tooltip info goes here too.</Text>}
+            {...(toolProps as TooltipProps)}
+            containerStyle={{ width: 145, height: 130 }}
+            popover={<Text>{`Some big text full of important stuff for the super duper user that our design has been created for`}</Text>}
           >
-            <Text>Huge</Text>
+            <Text>HUGE</Text>
           </Tooltip>
         </View>
         <View style={styles.view}>
-          <Tooltip width={150} popover={<Text>Tooltip info goes here</Text>}>
+          <Tooltip
+            {...(toolProps as TooltipProps)}
+            width={200}
+            backgroundColor={colors.primary1}
+            popover={<Text>Tooltip info goes here</Text>}
+          >
             <Text>More attention</Text>
           </Tooltip>
         </View>
         <View style={styles.view}>
-          <Tooltip popover={<Text>Tooltip info goes here</Text>}>
-            <Text>I'm Different</Text>
+          <Tooltip
+            {...(toolProps as TooltipProps)}
+            width={200}
+            backgroundColor={colors.primary2}
+            popover={<Text>Tooltip info goes here</Text>}
+          >
+            <Text>I'm different</Text>
           </Tooltip>
-          <Tooltip popover={<Text>Tooltip info goes here</Text>}>
+          <Tooltip
+            {...(toolProps as TooltipProps)}
+            width={200}
+            popover={<Text>Tooltip info goes here</Text>}
+          >
             <Text>Press me</Text>
           </Tooltip>
         </View>
